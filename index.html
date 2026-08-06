@@ -1263,7 +1263,7 @@
                         <polyline points="8 6 2 12 8 18" />
                     </svg>
                     Code
-                    <span class="nav-badge">Upgrade</span>
+                    
                 </div>
                 <div class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -1309,7 +1309,7 @@
                     <div class="user-avatar">T</div>
                     <div class="user-details">
                         <div class="user-name">Temporary User</div>
-                        <div class="user-plan">Free plan</div>
+                        <div class="user-plan">Pro plan</div>
                     </div>
                     <div class="user-row-actions">
                         <button class="icon-btn" style="padding:5px;" title="Download">
@@ -1361,9 +1361,9 @@
                 <div class="top-bar-left" id="topBarLeft"></div>
                 <div class="top-bar-center" id="topBarCenter">
                     <div class="plan-pill">
-                        Free plan
+                        Pro plan
                         <span class="dot"></span>
-                        <span class="upgrade-link">Upgrade</span>
+                        
                     </div>
                 </div>
                 <div class="top-bar-right">
@@ -1401,15 +1401,15 @@
                         <div class="composer-toolbar-right">
                             <div class="model-dropdown-wrapper">
                                 <div class="model-selector-btn">
-                                    <span id="welcomeModelName">Sonnet 4</span>
+                                    <span id="welcomeModelName">Sonnet 5</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                         <polyline points="6 9 12 15 18 9" />
                                     </svg>
                                 </div>
                                 <select id="modelSelector" aria-label="Select model">
-                                    <option value="claude-sonnet-4">Sonnet 4</option>
-                                    <option value="claude-opus-4">Opus 4</option>
-                                    <option value="claude-3-7-sonnet">Sonnet 3.7</option>
+                                    <option value="anthropic/claude-sonnet-5">Sonnet 5</option>
+                                    <option value="anthropic/claude-opus-5">Opus 5</option>
+                                    <option value="anthropic/claude-fable-5">Fable 5</option>
                                 </select>
                             </div>
                             <span class="toolbar-divider">·</span>
@@ -1490,15 +1490,15 @@
                             <div class="composer-toolbar-right">
                                 <div class="model-dropdown-wrapper">
                                     <div class="model-selector-btn">
-                                        <span id="chatModelName">Sonnet 4</span>
+                                        <span id="chatModelName">Sonnet 5</span>
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <polyline points="6 9 12 15 18 9" />
                                         </svg>
                                     </div>
                                     <select id="chatModelSelector" aria-label="Select model">
-                                        <option value="claude-sonnet-4">Sonnet 4</option>
-                                        <option value="claude-opus-4">Opus 4</option>
-                                        <option value="claude-3-7-sonnet">Sonnet 3.7</option>
+                                        <option value="anthropic/claude-sonnet-5">Sonnet 5</option>
+                                        <option value="anthropic/claude-opus-5">Opus 5</option>
+                                        <option value="anthropic/claude-fable-5">Fable 5</option>
                                     </select>
                                 </div>
                                 <span class="toolbar-divider">·</span>
@@ -1565,9 +1565,9 @@
     <script>
         // ── State ──
         const availableModels = [
-            { apiName: 'claude-sonnet-4', shortName: 'Sonnet 4' },
-            { apiName: 'claude-opus-4', shortName: 'Opus 4' },
-            { apiName: 'claude-3-7-sonnet', shortName: 'Sonnet 3.7' }
+            { apiName: 'anthropic/claude-sonnet-5', shortName: 'Sonnet 5' },
+            { apiName: 'anthropic/claude-opus-5', shortName: 'Opus 5' },
+            { apiName: 'anthropic/claude-fable-5', shortName: 'Fable 5' }
         ];
         let currentModel = availableModels[0].apiName;
         let chatHistory = [];
@@ -1620,7 +1620,7 @@
             try {
                 if (btn) { btn.textContent = '🔄 Authenticating…'; btn.disabled = true; }
                 if (typeof puter === 'undefined' || !puter.ai) throw new Error('Puter.js not yet loaded.');
-                const res = await puter.ai.chat('test', { model: 'claude-sonnet-4' });
+                const res = await puter.ai.chat('test', { model: 'anthropic/claude-sonnet-5' });
                 if (res && (res.message?.content || res.success !== false)) {
                     if (btn) { btn.textContent = '✅ Authenticated!'; btn.style.backgroundColor = '#4caf50'; }
                     markAuthDone();
@@ -1762,7 +1762,7 @@
         function setTopBarWelcome() {
             document.getElementById('topBarLeft').innerHTML = '';
             document.getElementById('topBarCenter').innerHTML = `
-            <div class="plan-pill">Free plan<span class="dot"></span><span class="upgrade-link">Upgrade</span></div>`;
+            <div class="plan-pill">Pro plan<span class="dot"></span></div>`;
             document.getElementById('shareBtn').style.display = 'none';
         }
         function setTopBarChat(title) {
@@ -2133,7 +2133,7 @@
         style="top: auto; right: 10px; bottom: 60px; min-width: 220px; display: none;">
         <div class="dropdown-item" style="padding: 10px 12px;">
             <div style="font-weight: 600; font-size: 14px;">Temporary User</div>
-            <div style="font-size: 12px; color: var(--text-tertiary);">Free Plan</div>
+            <div style="font-size: 12px; color: var(--text-tertiary);">Pro Plan</div>
         </div>
         <div class="dropdown-divider"></div>
         <button class="dropdown-item">
