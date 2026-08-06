@@ -540,6 +540,36 @@
             height: 20px;
         }
 
+        .model-picker-container, .effort-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background-color: rgba(0,0,0,0.05);
+            border-radius: 7px;
+            padding: 3px;
+        }
+        .model-picker-btn, .effort-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .model-picker-btn.active, .effort-btn.active {
+            background-color: var(--bg-composer);
+            color: var(--text-primary);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .effort-btn:disabled {
+            color: var(--text-tertiary);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         /* WELCOME */
         .welcome-screen {
             display: flex;
@@ -1360,10 +1390,7 @@
             <div class="top-bar" id="topBar">
                 <div class="top-bar-left" id="topBarLeft"></div>
                 <div class="top-bar-center" id="topBarCenter">
-                    <div class="plan-pill">
-                        Pro plan
-                        
-                    </div>
+                    <div class="plan-pill">Pro plan</div>
                 </div>
                 <div class="top-bar-right">
                     <button class="share-btn" id="shareBtn" style="display:none;">Share</button>
@@ -1389,7 +1416,7 @@
                         rows="1"></textarea>
                     <div class="composer-toolbar">
                         <div class="composer-toolbar-left">
-                            <button class="composer-icon-btn" title="Add attachment" aria-label="Add">
+                            <button class="composer-icon-btn" title="Add attachment" aria-label="Add" id="addAttachmentWelcome">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -1398,26 +1425,17 @@
                             </button>
                         </div>
                         <div class="composer-toolbar-right">
-                            <div class="model-dropdown-wrapper">
-                                <div class="model-selector-btn">
-                                    <span id="welcomeModelName">Sonnet 5</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <polyline points="6 9 12 15 18 9" />
-                                    </svg>
-                                </div>
-                                <select id="modelSelector" aria-label="Select model">
-                                    <option value="anthropic/claude-sonnet-5">Sonnet 5</option>
-                                    <option value="anthropic/claude-opus-5">Opus 5</option>
-                                    <option value="anthropic/claude-fable-5">Fable 5</option>
-                                </select>
+                            <div class="model-picker-container" id="welcomeModelPicker">
+                                <button class="model-picker-btn active" data-model="anthropic/claude-sonnet-5">Sonnet 5</button>
+                                <button class="model-picker-btn" data-model="anthropic/claude-opus-5">Opus 5</button>
+                                <button class="model-picker-btn" data-model="anthropic/claude-fable-5">Fable 5</button>
                             </div>
                             <span class="toolbar-divider">·</span>
-                            <button class="style-pill-btn">
-                                Medium
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                            </button>
+                            <div class="effort-picker-container">
+                                <button class="effort-btn" disabled>Low</button>
+                                <button class="effort-btn active">Medium</button>
+                                <button class="effort-btn" disabled>High</button>
+                            </div>
                             <button class="mic-btn" title="Voice input" aria-label="Voice input">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -1478,7 +1496,7 @@
                             rows="1"></textarea>
                         <div class="composer-toolbar">
                             <div class="composer-toolbar-left">
-                                <button class="composer-icon-btn" title="Add attachment" aria-label="Add">
+                                <button class="composer-icon-btn" title="Add attachment" aria-label="Add" id="addAttachmentChat">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -1487,26 +1505,17 @@
                                 </button>
                             </div>
                             <div class="composer-toolbar-right">
-                                <div class="model-dropdown-wrapper">
-                                    <div class="model-selector-btn">
-                                        <span id="chatModelName">Sonnet 5</span>
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                            <polyline points="6 9 12 15 18 9" />
-                                        </svg>
-                                    </div>
-                                    <select id="chatModelSelector" aria-label="Select model">
-                                        <option value="anthropic/claude-sonnet-5">Sonnet 5</option>
-                                        <option value="anthropic/claude-opus-5">Opus 5</option>
-                                        <option value="anthropic/claude-fable-5">Fable 5</option>
-                                    </select>
+                                <div class="model-picker-container" id="chatModelPicker">
+                                    <button class="model-picker-btn active" data-model="anthropic/claude-sonnet-5">Sonnet 5</button>
+                                    <button class="model-picker-btn" data-model="anthropic/claude-opus-5">Opus 5</button>
+                                    <button class="model-picker-btn" data-model="anthropic/claude-fable-5">Fable 5</button>
                                 </div>
                                 <span class="toolbar-divider">·</span>
-                                <button class="style-pill-btn">
-                                    Medium
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <polyline points="6 9 12 15 18 9" />
-                                    </svg>
-                                </button>
+                                <div class="effort-picker-container">
+                                    <button class="effort-btn" disabled>Low</button>
+                                    <button class="effort-btn active">Medium</button>
+                                    <button class="effort-btn" disabled>High</button>
+                                </div>
                                 <button class="mic-btn" title="Voice input" aria-label="Voice input">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -1647,15 +1656,15 @@
 
         // ── Model UI ──
         function syncModelUI() {
-            const m = availableModels.find(x => x.apiName === currentModel) || availableModels[0];
-            document.getElementById('modelSelector').value = currentModel;
-            document.getElementById('chatModelSelector').value = currentModel;
-            document.getElementById('welcomeModelName').textContent = m.shortName;
-            document.getElementById('chatModelName').textContent = m.shortName;
+            document.querySelectorAll('.model-picker-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.model === currentModel);
+            });
         }
-        function onModelChange(e) {
-            currentModel = e.target.value;
-            syncModelUI(); saveModel();
+
+        function onModelChange(model) {
+            currentModel = model;
+            syncModelUI();
+            saveModel();
         }
 
         // ── Protocol notice ──
@@ -2077,8 +2086,9 @@
             document.getElementById('newChatBtn').addEventListener('click', startNewChat);
             document.querySelector('.sidebar-nav .nav-item').addEventListener('click', showAllChats);
             document.getElementById('authButton').addEventListener('click', handleManualAuth);
-            document.getElementById('modelSelector').addEventListener('change', onModelChange);
-            document.getElementById('chatModelSelector').addEventListener('change', onModelChange);
+            document.querySelectorAll('.model-picker-btn').forEach(btn => {
+                btn.addEventListener('click', () => onModelChange(btn.dataset.model));
+            });
 
             document.querySelector('.user-row').addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -2098,15 +2108,32 @@
             cIn.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleChatSend(); } });
             csBtn.addEventListener('click', handleChatSend);
 
-            document.querySelector('#chatComposer .composer-toolbar-left .composer-icon-btn').addEventListener('click', (e) => {
+            const attachmentDropdown = document.getElementById('attachment-dropdown');
+            
+            function toggleAttachmentDropdown(button) {
+                if (attachmentDropdown.classList.contains('show')) {
+                    attachmentDropdown.classList.remove('show');
+                } else {
+                    const rect = button.getBoundingClientRect();
+                    const composerBox = button.closest('.composer-box');
+                    const composerRect = composerBox.getBoundingClientRect();
+                    
+                    attachmentDropdown.style.bottom = `${window.innerHeight - composerRect.top}px`;
+                    attachmentDropdown.style.left = `${rect.left}px`;
+                    attachmentDropdown.style.top = 'auto';
+
+                    attachmentDropdown.classList.add('show');
+                }
+            }
+
+            document.getElementById('addAttachmentWelcome').addEventListener('click', (e) => {
                 e.stopPropagation();
-                const dropdown = document.getElementById('attachment-dropdown');
-                dropdown.classList.toggle('show');
+                toggleAttachmentDropdown(e.currentTarget);
             });
-            document.getElementById('welcomeComposer').querySelector('.composer-toolbar-left .composer-icon-btn').addEventListener('click', (e) => {
+
+            document.getElementById('addAttachmentChat').addEventListener('click', (e) => {
                 e.stopPropagation();
-                const dropdown = document.getElementById('attachment-dropdown');
-                dropdown.classList.toggle('show');
+                toggleAttachmentDropdown(e.currentTarget);
             });
 
             const cm = document.getElementById('chatMessages');
@@ -2120,6 +2147,9 @@
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.dropdown-menu') && !e.target.closest('.recent-item-actions button') && !e.target.closest('.composer-icon-btn')) {
                     closeAllDropdowns();
+                }
+                if (attachmentDropdown.classList.contains('show') && !e.target.closest('#addAttachmentWelcome') && !e.target.closest('#addAttachmentChat')) {
+                    attachmentDropdown.classList.remove('show');
                 }
             });
 
