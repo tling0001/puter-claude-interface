@@ -1194,7 +1194,6 @@
 </head>
 
 <body>
-    <input type="file" id="fileUploader" style="display: none;" multiple>
     <div class="container" id="mainContainer">
 
         <!-- Sidebar reopen -->
@@ -1538,7 +1537,7 @@
 
             <div id="attachment-dropdown" class="dropdown-menu"
                 style="bottom: 100%; top: auto; left: 24px; margin-bottom: 8px;">
-                <button class="dropdown-item" id="uploadFileBtn">
+                <button class="dropdown-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -2080,18 +2079,6 @@
             document.getElementById('authButton').addEventListener('click', handleManualAuth);
             document.getElementById('modelSelector').addEventListener('change', onModelChange);
             document.getElementById('chatModelSelector').addEventListener('change', onModelChange);
-
-            document.getElementById('uploadFileBtn').addEventListener('click', () => {
-                document.getElementById('fileUploader').click();
-            });
-
-            document.getElementById('fileUploader').addEventListener('change', (event) => {
-                const files = event.target.files;
-                if (files.length > 0) {
-                    console.log(files);
-                    // You can handle the files here, e.g., display them in the chat.
-                }
-            });
 
             document.querySelector('.user-row').addEventListener('click', (e) => {
                 e.stopPropagation();
