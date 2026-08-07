@@ -27,7 +27,7 @@
 
         :root {
             --bg-main: #faf9f5ff;
-            --bg-sidebar: #eeebe4;
+            --bg-sidebar: #faf9f5ff;
             --bg-composer: #faf9f5ff;
             --bg-user-msg: #ededec;
             --text-primary: #1a1a18;
@@ -64,6 +64,7 @@
             flex-shrink: 0;
             overflow: hidden;
             transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.22s ease;
+            border-right: 1px solid var(--border-color);
         }
 
         .container.sidebar-collapsed .sidebar {
