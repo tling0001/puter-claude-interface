@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude</title>
+
+    <!-- PWA / installable on phone -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#f7f4ef">
+    <meta name="description" content="A free, self-hosted, installable Claude AI chat interface.">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Claude AI">
+
     <script src="https://js.puter.com/v2/"></script>
     <style>
         * {
@@ -540,15 +552,18 @@
             height: 20px;
         }
 
-        .model-picker-container, .effort-picker-container {
+        .model-picker-container,
+        .effort-picker-container {
             display: flex;
             align-items: center;
             gap: 4px;
-            background-color: rgba(0,0,0,0.05);
+            background-color: rgba(0, 0, 0, 0.05);
             border-radius: 7px;
             padding: 3px;
         }
-        .model-picker-btn, .effort-btn {
+
+        .model-picker-btn,
+        .effort-btn {
             background: none;
             border: none;
             cursor: pointer;
@@ -559,11 +574,14 @@
             color: var(--text-secondary);
             transition: all 0.2s;
         }
-        .model-picker-btn.active, .effort-btn.active {
+
+        .model-picker-btn.active,
+        .effort-btn.active {
             background-color: var(--bg-composer);
             color: var(--text-primary);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
         }
+
         .effort-btn:disabled {
             color: var(--text-tertiary);
             cursor: not-allowed;
@@ -588,10 +606,12 @@
             cursor: pointer;
             transition: background-color 0.15s, color 0.15s;
         }
+
         .model-effort-btn:hover {
             background-color: rgba(0, 0, 0, 0.07);
             color: var(--text-primary);
         }
+
         .model-effort-btn svg {
             width: 14px;
             height: 14px;
@@ -604,6 +624,7 @@
         .dropdown-section {
             padding: 4px;
         }
+
         .dropdown-label {
             font-size: 11px;
             font-weight: 500;
@@ -612,32 +633,44 @@
             text-transform: uppercase;
             padding: 4px 8px 6px;
         }
-        .model-select-item, .effort-select-item {
+
+        .model-select-item,
+        .effort-select-item {
             justify-content: space-between;
         }
-        .model-select-item .model-name, .effort-select-item {
+
+        .model-select-item .model-name,
+        .effort-select-item {
             font-weight: 500;
         }
+
         .model-select-item .model-info {
             font-size: 12px;
             color: var(--text-tertiary);
         }
-        .model-select-item.active, .effort-select-item.active {
-            background-color: rgba(0,0,0,0.08);
+
+        .model-select-item.active,
+        .effort-select-item.active {
+            background-color: rgba(0, 0, 0, 0.08);
         }
+
         .effort-select-item:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             background: none !important;
         }
-        .model-select-item.active::before, .effort-select-item.active::before {
+
+        .model-select-item.active::before,
+        .effort-select-item.active::before {
             content: '✓';
             font-weight: 600;
             color: var(--accent);
             position: absolute;
             left: 8px;
         }
-        .model-select-item.active, .effort-select-item.active {
+
+        .model-select-item.active,
+        .effort-select-item.active {
             padding-left: 28px;
         }
 
@@ -1366,7 +1399,7 @@
                         <polyline points="8 6 2 12 8 18" />
                     </svg>
                     Code
-                    
+
                 </div>
                 <div class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
@@ -1489,7 +1522,8 @@
                         rows="1"></textarea>
                     <div class="composer-toolbar">
                         <div class="composer-toolbar-left">
-                            <button class="composer-icon-btn" title="Add attachment" aria-label="Add" id="addAttachmentWelcome">
+                            <button class="composer-icon-btn" title="Add attachment" aria-label="Add"
+                                id="addAttachmentWelcome">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -1568,7 +1602,8 @@
                             rows="1"></textarea>
                         <div class="composer-toolbar">
                             <div class="composer-toolbar-left">
-                                <button class="composer-icon-btn" title="Add attachment" aria-label="Add" id="addAttachmentChat">
+                                <button class="composer-icon-btn" title="Add attachment" aria-label="Add"
+                                    id="addAttachmentChat">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -1617,8 +1652,10 @@
 
             <div id="attachment-dropdown" class="dropdown-menu">
                 <button class="dropdown-item" id="uploadFileBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
                     </svg>
                     Upload from computer
                 </button>
@@ -1737,7 +1774,7 @@
             saveModel();
             closeAllDropdowns();
         }
-        
+
         function onEffortChange(effort) {
             currentEffort = effort;
             syncModelEffortUI();
@@ -1816,7 +1853,7 @@
 
         function closeAllDropdowns() {
             document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-                 menu.classList.remove('show');
+                menu.classList.remove('show');
             });
         }
 
@@ -1944,7 +1981,7 @@
             const conv = recentConversations.find(c => c.id === id);
             if (!conv) return;
             currentConvId = id; chatHistory = [...conv.messages];
-            currentModel = conv.model; 
+            currentModel = conv.model;
             syncModelEffortUI();
             const cm = document.getElementById('chatMessages');
             cm.innerHTML = '';
@@ -2223,7 +2260,7 @@
             csBtn.addEventListener('click', handleChatSend);
 
             const attachmentDropdown = document.getElementById('attachment-dropdown');
-            
+
             function toggleAttachmentDropdown(button) {
                 if (attachmentDropdown.classList.contains('show')) {
                     attachmentDropdown.classList.remove('show');
@@ -2232,7 +2269,7 @@
                     const rect = button.getBoundingClientRect();
                     const composerBox = button.closest('.composer-box');
                     const composerRect = composerBox.getBoundingClientRect();
-                    
+
                     attachmentDropdown.style.bottom = `${window.innerHeight - composerRect.top}px`;
                     attachmentDropdown.style.left = `${rect.left}px`;
                     attachmentDropdown.style.top = 'auto';
@@ -2277,7 +2314,7 @@
                 if (!target.closest('.dropdown-menu') && !target.closest('.recent-item-actions button') && !target.closest('.model-effort-btn')) {
                     closeAllDropdowns();
                 }
-                
+
                 const isAttachmentButton = target.closest('#addAttachmentWelcome') || target.closest('#addAttachmentChat');
                 if (attachmentDropdown.classList.contains('show') && !isAttachmentButton && !target.closest('#attachment-dropdown')) {
                     attachmentDropdown.classList.remove('show');
