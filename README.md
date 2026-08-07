@@ -13,7 +13,7 @@ A polished, self-hosted web interface for Anthropic's Claude AI. This project ru
 
 ### 🚀 Key Features
 
-*   ✅ **Puter.js Integration:** Leverages Puter.js for seamless interaction with the Claude API.
+*   ✅ **Seamless Claude API Interaction via Puter.js.**
 *   🎨 **Polished UI:** A clean, modern interface inspired by the official Claude UI, with light and dark mode support.
 *   📄 **Artifact Generation:** Automatically renders code blocks into beautiful, interactive "artifact" canvases with syntax highlighting, copy, download, and even an HTML preview feature.
 *   💬 **Streaming Responses:** Watch Claude's responses appear in real-time, just like the official experience.
