@@ -1830,10 +1830,8 @@
                 closeAllDropdowns();
                 syncModelEffortUI();
                 const rect = button.getBoundingClientRect();
-                const composerBox = button.closest('.composer-box');
-                const composerRect = composerBox.getBoundingClientRect();
-
-                dropdown.style.bottom = `${window.innerHeight - composerRect.top}px`;
+                
+                dropdown.style.bottom = `${window.innerHeight - rect.top}px`;
                 dropdown.style.left = `${rect.left}px`;
                 dropdown.style.top = 'auto';
 
@@ -1874,8 +1872,20 @@
         `;
             document.body.appendChild(menu);
             const rect = button.getBoundingClientRect();
-            menu.style.left = `${rect.left}px`;
-            menu.style.top = `${rect.bottom + 4}px`;
+            const menuRect = menu.getBoundingClientRect();
+
+            let top = rect.bottom + 4;
+            let left = rect.left;
+
+            if (left + menuRect.width > window.innerWidth) {
+                left = window.innerWidth - menuRect.width - 4;
+            }
+            if (top + menuRect.height > window.innerHeight) {
+                top = rect.top - menuRect.height - 4;
+            }
+
+            menu.style.left = `${left}px`;
+            menu.style.top = `${top}px`;
 
             menu.querySelector('.dropdown-item[style*="color: #d9534f;"]').addEventListener('click', () => {
                 if (confirm(`Are you sure you want to delete "${conv.title}"?`)) {
@@ -2331,10 +2341,8 @@
                 } else {
                     closeAllDropdowns();
                     const rect = button.getBoundingClientRect();
-                    const composerBox = button.closest('.composer-box');
-                    const composerRect = composerBox.getBoundingClientRect();
 
-                    attachmentDropdown.style.bottom = `${window.innerHeight - composerRect.top}px`;
+                    attachmentDropdown.style.bottom = `${window.innerHeight - rect.top}px`;
                     attachmentDropdown.style.left = `${rect.left}px`;
                     attachmentDropdown.style.top = 'auto';
 
