@@ -1,6 +1,6 @@
-# 🤖 Free, Self-Hosted Claude AI Interface
+# 🤖 Self-Hosted Claude AI Interface
 
-A fully functional, polished, and self-hosted web interface for Anthropic's Claude AI. This project runs entirely in your browser, using the free tier of **Puter.js** for secure access to the Claude API. No backend, no server costs, 100% free.
+A polished, self-hosted web interface for Anthropic's Claude AI. This project runs entirely within your browser, using **Puter.js** for secure and direct access to the Claude API. Please note that while the interface is self-hosted, users are responsible for any usage costs associated with their Puter.js or Claude API accounts.
 
 ---
 
@@ -13,7 +13,7 @@ A fully functional, polished, and self-hosted web interface for Anthropic's Clau
 
 ### 🚀 Key Features
 
-*   ✅ **100% Free Access:** Leverages the free tier of Puter.js to interact with the Claude API at no cost.
+*   ✅ **Puter.js Integration:** Leverages Puter.js for seamless interaction with the Claude API.
 *   🎨 **Polished UI:** A clean, modern interface inspired by the official Claude UI, with light and dark mode support.
 *   📄 **Artifact Generation:** Automatically renders code blocks into beautiful, interactive "artifact" canvases with syntax highlighting, copy, download, and even an HTML preview feature.
 *   💬 **Streaming Responses:** Watch Claude's responses appear in real-time, just like the official experience.
@@ -24,7 +24,7 @@ A fully functional, polished, and self-hosted web interface for Anthropic's Clau
 
 ### ❓ How It Works
 
-This interface does **not** use a pirated or reverse-engineered API. It uses the official, legitimate **Puter.js** library. When you first use the app, it will ask for a one-time authentication with your Puter account. This securely connects the web app to **your own account's** free Claude API access, ensuring everything is secure and above board.
+This interface does **not** use a pirated or reverse-engineered API. It uses the official, legitimate **Puter.js** library. When you first use the app, it will ask for a one-time authentication with your Puter account. This securely connects the web app to **your own account's** Claude API access, ensuring everything is secure and above board.
 
 ---
 
@@ -62,7 +62,7 @@ That's it! There are no other libraries or frameworks to install.
     ```
 4.  **Open Browser:** Open your web browser and go to the address `http://localhost:8000`.
 
-**First Use:** The first time you send a message, a small popup will appear asking you to authenticate with Puter. Please **allow the popup** to enable the free AI access.
+**First Use:** The first time you send a message, a small popup will appear asking you to authenticate with Puter. Please **allow the popup** to enable AI access.
 
 ---
 
