@@ -1831,10 +1831,21 @@
                 closeAllDropdowns();
                 syncModelEffortUI();
                 const rect = button.getBoundingClientRect();
-                
-                dropdown.style.bottom = `${window.innerHeight - rect.top}px`;
-                dropdown.style.left = `${rect.left}px`;
-                dropdown.style.top = 'auto';
+                const menuRect = dropdown.getBoundingClientRect();
+
+                let top = rect.bottom + 4;
+                let left = rect.left;
+
+                if (left + menuRect.width > window.innerWidth) {
+                    left = window.innerWidth - menuRect.width - 4;
+                }
+                if (top + menuRect.height > window.innerHeight) {
+                    top = rect.top - menuRect.height - 4;
+                }
+
+                dropdown.style.left = `${left}px`;
+                dropdown.style.top = `${top}px`;
+                dropdown.style.bottom = 'auto'; // Reset bottom positioning
 
                 dropdown.classList.add('show');
             }
@@ -2342,10 +2353,21 @@
                 } else {
                     closeAllDropdowns();
                     const rect = button.getBoundingClientRect();
+                    const menuRect = attachmentDropdown.getBoundingClientRect();
 
-                    attachmentDropdown.style.bottom = `${window.innerHeight - rect.top}px`;
-                    attachmentDropdown.style.left = `${rect.left}px`;
-                    attachmentDropdown.style.top = 'auto';
+                    let top = rect.bottom + 4;
+                    let left = rect.left;
+
+                    if (left + menuRect.width > window.innerWidth) {
+                        left = window.innerWidth - menuRect.width - 4;
+                    }
+                    if (top + menuRect.height > window.innerHeight) {
+                        top = rect.top - menuRect.height - 4;
+                    }
+
+                    attachmentDropdown.style.left = `${left}px`;
+                    attachmentDropdown.style.top = `${top}px`;
+                    attachmentDropdown.style.bottom = 'auto'; // Reset bottom positioning
 
                     attachmentDropdown.classList.add('show');
                 }
