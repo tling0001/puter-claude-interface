@@ -620,7 +620,6 @@
 
         #model-effort-dropdown {
             min-width: 240px;
-            z-index: 1001;
         }
 
         .dropdown-section {
@@ -1691,15 +1690,17 @@
                 </div>
             </div>
 
-            <div id="attachment-dropdown" class="dropdown-menu">
-                <button class="dropdown-item" id="uploadFileBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path
-                            d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-                    </svg>
-                    Upload from computer
-                </button>
+            <div id="attachment-dropdown-wrapper" style="position: relative; z-index: 1001;">
+                <div id="attachment-dropdown" class="dropdown-menu">
+                    <button class="dropdown-item" id="uploadFileBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                        </svg>
+                        Upload from computer
+                    </button>
+                </div>
             </div>
 
         </div><!-- /main-content -->
@@ -1831,21 +1832,10 @@
                 closeAllDropdowns();
                 syncModelEffortUI();
                 const rect = button.getBoundingClientRect();
-                const menuRect = dropdown.getBoundingClientRect();
-
-                let top = rect.bottom + 4;
-                let left = rect.left;
-
-                if (left + menuRect.width > window.innerWidth) {
-                    left = window.innerWidth - menuRect.width - 4;
-                }
-                if (top + menuRect.height > window.innerHeight) {
-                    top = rect.top - menuRect.height - 4;
-                }
-
-                dropdown.style.left = `${left}px`;
-                dropdown.style.top = `${top}px`;
-                dropdown.style.bottom = 'auto'; // Reset bottom positioning
+                
+                dropdown.style.bottom = `${window.innerHeight - rect.top}px`;
+                dropdown.style.left = `${rect.left}px`;
+                dropdown.style.top = 'auto';
 
                 dropdown.classList.add('show');
             }
@@ -2347,27 +2337,16 @@
 
             const attachmentDropdown = document.getElementById('attachment-dropdown');
 
-            function toggleAttachmentDropdown(button) {
+            function openAttachmentDropdown(button) {
                 if (attachmentDropdown.classList.contains('show')) {
                     attachmentDropdown.classList.remove('show');
                 } else {
                     closeAllDropdowns();
                     const rect = button.getBoundingClientRect();
-                    const menuRect = attachmentDropdown.getBoundingClientRect();
 
-                    let top = rect.bottom + 4;
-                    let left = rect.left;
-
-                    if (left + menuRect.width > window.innerWidth) {
-                        left = window.innerWidth - menuRect.width - 4;
-                    }
-                    if (top + menuRect.height > window.innerHeight) {
-                        top = rect.top - menuRect.height - 4;
-                    }
-
-                    attachmentDropdown.style.left = `${left}px`;
-                    attachmentDropdown.style.top = `${top}px`;
-                    attachmentDropdown.style.bottom = 'auto'; // Reset bottom positioning
+                    attachmentDropdown.style.bottom = `${window.innerHeight - rect.top}px`;
+                    attachmentDropdown.style.left = `${rect.left}px`;
+                    attachmentDropdown.style.top = 'auto';
 
                     attachmentDropdown.classList.add('show');
                 }
@@ -2375,12 +2354,12 @@
 
             document.getElementById('addAttachmentWelcome').addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleAttachmentDropdown(e.currentTarget);
+                openAttachmentDropdown(e.currentTarget);
             });
 
             document.getElementById('addAttachmentChat').addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleAttachmentDropdown(e.currentTarget);
+                openAttachmentDropdown(e.currentTarget);
             });
 
             document.getElementById('uploadFileBtn').addEventListener('click', () => {
@@ -2406,13 +2385,12 @@
 
             document.addEventListener('click', (e) => {
                 const target = e.target;
-                if (!target.closest('.dropdown-menu') && !target.closest('.recent-item-actions button') && !target.closest('.model-effort-btn')) {
+                if (!target.closest('.dropdown-menu') && 
+                    !target.closest('.recent-item-actions button') && 
+                    !target.closest('.model-effort-btn') && 
+                    !target.closest('#addAttachmentWelcome') && 
+                    !target.closest('#addAttachmentChat')) {
                     closeAllDropdowns();
-                }
-
-                const isAttachmentButton = target.closest('#addAttachmentWelcome') || target.closest('#addAttachmentChat');
-                if (attachmentDropdown.classList.contains('show') && !isAttachmentButton && !target.closest('#attachment-dropdown')) {
-                    attachmentDropdown.classList.remove('show');
                 }
             });
 
