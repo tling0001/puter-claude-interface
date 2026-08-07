@@ -24,7 +24,7 @@ A polished, self-hosted web interface for Anthropic's Claude AI. This project ru
 
 ### ❓ How It Works
 
-This interface does **not** use a pirated or reverse-engineered API. It uses the official, legitimate **Puter.js** library. When you first use the app, it will ask for a one-time authentication with your Puter account. This securely connects the web app to **your own account's** Claude API access, ensuring everything is secure and above board.
+This interface utilizes the official and legitimate **Puter.js** library for secure interaction with the Claude API. Upon first use, the application will prompt for a one-time authentication with your Puter account. This process securely connects the web app to your designated Claude API access, maintaining security and compliance.
 
 ---
 
@@ -34,7 +34,7 @@ Because browsers have security rules (CORS), you cannot simply open the `index.h
 
 ### ✅ Prerequisites
 
-This project has minimal dependencies, making it very easy to set up. All you need is:
+This project has minimal dependencies, making setup straightforward. You only need:
 
 1.  **🐍 Python 3:**
     *   This is **only** required to run the simple local web server. The application itself is 100% JavaScript.
@@ -62,7 +62,7 @@ That's it! There are no other libraries or frameworks to install.
     ```
 4.  **Open Browser:** Open your web browser and go to the address `http://localhost:8000`.
 
-**First Use:** The first time you send a message, a small popup will appear asking you to authenticate with Puter. Please **allow the popup** to enable AI access.
+**First Use:** Upon sending your first message, a popup will appear requesting authentication with Puter. **Please allow this popup** to enable AI access.
 
 ---
 
