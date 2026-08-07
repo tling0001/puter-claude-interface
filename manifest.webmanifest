@@ -1,6 +1,6 @@
 {
-  "name": "Claude AI",
-  "short_name": "Claude AI",
+  "name": "Claude",
+  "short_name": "Claude",
   "description": "A free, self-hosted, installable Claude AI chat interface.",
   "start_url": "./index.html",
   "scope": "./",
