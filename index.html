@@ -1806,7 +1806,7 @@
             const el = document.getElementById('protocolNotice');
             if (!el) return;
             if (location.protocol === 'file:') {
-                el.innerHTML = '✅ <strong>File mode:</strong> Authentication should work perfectly!';
+                el.innerHTML = '❌ <strong>File mode:</strong> Authentication will not work!';
                 el.style.color = '#4caf50';
             } else if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
                 el.innerHTML = '⚠️ <strong>Server mode:</strong> Extensions or cookies may block auth.';
