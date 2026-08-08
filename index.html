@@ -1690,17 +1690,15 @@
                 </div>
             </div>
 
-            <div id="attachment-dropdown-wrapper" style="position: relative; z-index: 1001;">
-                <div id="attachment-dropdown" class="dropdown-menu">
-                    <button class="dropdown-item" id="uploadFileBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path
-                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-                        </svg>
-                        Upload from computer
-                    </button>
-                </div>
+            <div id="attachment-dropdown" class="dropdown-menu">
+                <button class="dropdown-item" id="uploadFileBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                    </svg>
+                    Upload from computer
+                </button>
             </div>
 
         </div><!-- /main-content -->
@@ -2300,10 +2298,12 @@
             document.getElementById('authButton').addEventListener('click', handleManualAuth);
 
             document.getElementById('welcomeModelEffortBtn').addEventListener('click', (e) => {
+                console.log('Model button clicked');
                 e.stopPropagation();
                 toggleModelEffortDropdown(e.currentTarget);
             });
             document.getElementById('chatModelEffortBtn').addEventListener('click', (e) => {
+                console.log('Model button clicked');
                 e.stopPropagation();
                 toggleModelEffortDropdown(e.currentTarget);
             });
@@ -2353,11 +2353,13 @@
             }
 
             document.getElementById('addAttachmentWelcome').addEventListener('click', (e) => {
+                console.log('Attachment button clicked');
                 e.stopPropagation();
                 openAttachmentDropdown(e.currentTarget);
             });
 
             document.getElementById('addAttachmentChat').addEventListener('click', (e) => {
+                console.log('Attachment button clicked');
                 e.stopPropagation();
                 openAttachmentDropdown(e.currentTarget);
             });
